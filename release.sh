@@ -10,7 +10,7 @@ else
 fi
 
 if [ -z "$2" ]; then
-    read -p "Android version (6.0|7.0|7.1.1|8.0|8.1|9.0|10.0|11.0|12.0|all): " ANDROID_VERSION
+    read -p "Android version (6.0|7.0|7.1.1|8.0|8.1|9.0|10.0|11.0|12.0|13.0|all): " ANDROID_VERSION
 else
     ANDROID_VERSION=$2
 fi
@@ -31,6 +31,7 @@ declare -A list_of_levels=(
         [10.0]=29
         [11.0]=30
         [12.0]=31
+        [13.0]=33
 )
 
 # The version of the Chrome browser installed on the Android emulator needs to be known beforehand
@@ -45,6 +46,7 @@ declare -A chromedriver_versions=(
         [10.0]="74.0.3729.6"
         [11.0]="83.0.4103.39"
         [12.0]="93.0.4577.15"
+        [13.0]="103.0.5060.134"
 ) 
 
 function get_android_versions() {
