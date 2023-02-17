@@ -136,7 +136,8 @@ def appium_run(avd_name: str):
         cmd += ' --relaxed-security'
 
     default_web_browser = os.getenv('BROWSER')
-    cmd += ' --chromedriver-executable {driver}'.format(driver=CHROME_DRIVER)
+    cmd += ' --base-path /wd/hub'
+    cmd += ' --use-plugins images'
 
     grid_connect = convert_str_to_bool(str(os.getenv('CONNECT_TO_GRID', False)))
     logger.info('Connect to selenium grid? {connect}'.format(connect=grid_connect))
@@ -177,6 +178,7 @@ def create_node_config(avd_name: str, browser_name: str, appium_host: str, appiu
     config = {
         'capabilities': [
             {
+                'appium:chromedriverExecutable':'/root/chromedriver',
                 'platform': 'Android',
                 'platformName': 'Android',
                 'version': ANDROID_VERSION,

@@ -167,8 +167,8 @@ function build() {
         echo "[BUILD] System Image: $sys_img"
         chrome_driver="${chromedriver_versions[$v]}"
         echo "[BUILD] chromedriver version: $chrome_driver"
-        image_version="$IMAGE-x86-$v:$RELEASE"
-        image_latest="$IMAGE-x86-$v:latest"
+        image_version="$IMAGE-x86-$v:$RELEASE-appium2"
+        image_latest="$IMAGE-x86-$v:appium2"
         echo "[BUILD] Image name: $image_version and $image_latest"
         echo "[BUILD] Dockerfile: $FILE_NAME"
         docker build -t $image_version --build-arg TOKEN=$TOKEN --build-arg ANDROID_VERSION=$v --build-arg API_LEVEL=$level \
@@ -182,7 +182,7 @@ function build() {
 function push() {
     # Push docker image(s)
     for v in "${versions[@]}"; do
-        image_version="$IMAGE-x86-$v:$RELEASE"
+        image_version="$IMAGE-x86-$v:$RELEASE-appium2"
         image_latest="$IMAGE-x86-$v:latest"
         echo "[PUSH] Image name: $image_version and $image_latest"
         docker push $image_version

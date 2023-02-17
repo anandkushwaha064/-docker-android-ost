@@ -299,7 +299,7 @@ _EOF
 
 function run_appium() {
 	echo "Preparing appium-server..."
-	CMD="appium --log $APPIUM_LOG"
+	CMD="appium server --log $APPIUM_LOG"
 	if [ "$CONNECT_TO_GRID" = true ]; then
 		NODE_CONFIG_JSON="/root/src/nodeconfig.json"
 		/root/generate_config.sh $NODE_CONFIG_JSON
