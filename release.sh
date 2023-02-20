@@ -10,7 +10,7 @@ else
 fi
 
 if [ -z "$2" ]; then
-    read -p "Android version (6.0|7.0|7.1.1|8.0|8.1|9.0|10.0|11.0|12.0|13.0|all): " ANDROID_VERSION
+    read -p "Android version (10.0|11.0|12.0|13.0|all): " ANDROID_VERSION
 else
     ANDROID_VERSION=$2
 fi
@@ -22,13 +22,6 @@ else
 fi
 
 declare -A list_of_levels=(
-        [6.0]=23
-        [7.0]=24
-        [7.1.1]=25
-        [8.0]=26
-        [8.1]=27
-        [9.0]=28
-        [10.0]=29
         [11.0]=30
         [12.0]=31
         [13.0]=33
@@ -37,13 +30,6 @@ declare -A list_of_levels=(
 # The version of the Chrome browser installed on the Android emulator needs to be known beforehand
 # in order to chose the proper version of chromedriver (see http://chromedriver.chromium.org/downloads)
 declare -A chromedriver_versions=(
-        [6.0]="2.18"
-        [7.0]="2.23"
-        [7.1.1]="2.28"
-        [8.0]="2.31"
-        [8.1]="2.33"
-        [9.0]="2.40"
-        [10.0]="74.0.3729.6"
         [11.0]="83.0.4103.39"
         [12.0]="93.0.4577.15"
         [13.0]="103.0.5060.134"
@@ -66,7 +52,7 @@ function get_android_versions() {
 
     # If version cannot be found in the list
     if [ -z "$versions" ]; then
-        echo "Android version \"$ANDROID_VERSION\" is not found in the list or not supported! Support only version 6.0, 7.0, 7.1.1, 8.0, 8.1, 9.0, 10.0, 11.0, 12.0"
+        echo "Android version \"$ANDROID_VERSION\" is not found in the list or not supported! Support only version 11.0, 12.0"
         exit 1
     fi
 
@@ -78,8 +64,8 @@ processor=x86
 
 function test() {
     # Prepare needed parameter to run tests
-    test_android_version=7.1.1
-    test_api_level=25
+    test_android_version=11.0
+    test_api_level=30
     test_processor=x86
     test_sys_img=$test_processor
     test_img_type=google_apis
@@ -183,7 +169,7 @@ function push() {
     # Push docker image(s)
     for v in "${versions[@]}"; do
         image_version="$IMAGE-x86-$v:$RELEASE-appium2"
-        image_latest="$IMAGE-x86-$v:latest"
+        image_latest="$IMAGE-x86-$v:appium2"
         echo "[PUSH] Image name: $image_version and $image_latest"
         docker push $image_version
         docker push $image_latest
