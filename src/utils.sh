@@ -14,26 +14,6 @@ function wait_emulator_to_be_ready () {
   done
 }
 
-function change_language_if_needed() {
-  if [ ! -z "${LANGUAGE// }" ] && [ ! -z "${COUNTRY// }" ]; then
-    wait_emulator_to_be_ready
-    echo "Language will be changed to ${LANGUAGE}-${COUNTRY}"
-    until adb root
-    do
-    	sleep 1
-    done
-    until adb shell 'setprop persist.sys.language $LANGUAGE; setprop persist.sys.country $COUNTRY; stop; start'
-    do
-    	sleep 1
-    done
-    until adb unroot
-    do
-    	sleep 1
-    done
-    echo "Language is changed!"
-  fi
-}
-
 function install_google_play () {
   wait_emulator_to_be_ready
   echo "Google Play Service will be installed"
@@ -135,8 +115,6 @@ done'>/root/src/proxy.sh
   fi
 }
 
-change_language_if_needed
-sleep 1
 enable_proxy_if_needed
 sleep 1
 install_google_play
