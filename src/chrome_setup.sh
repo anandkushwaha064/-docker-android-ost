@@ -1,6 +1,5 @@
 function change_language_if_needed() {
   if [ ! -z "${LANGUAGE// }" ] && [ ! -z "${COUNTRY// }" ]; then
-    wait_emulator_to_be_ready
     echo "Language will be changed to ${LANGUAGE}-${COUNTRY}"
     until adb root
     do
