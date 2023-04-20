@@ -155,9 +155,7 @@ ENV ANDROID_VERSION=$ANDROID_VERSION \
     GA_API_VERSION="1" \
     APP_RELEASE_VERSION=$APP_RELEASE_VERSION \
     APP_TYPE=Emulator
-ENV PATH ${PATH}:${ANDROID_HOME}/build-tools
-
-RUN update-alternatives --set java /usr/lib64/jvm/jre-1.8.0-openjdk/bin/java
+ENV PATH ${PATH}:${ANDROID_HOME}/platform-tools
 
 RUN yes | sdkmanager --licenses && \
     sdkmanager "platforms;android-${API_LEVEL}" "system-images;android-${API_LEVEL};${IMG_TYPE};${SYS_IMG}" "emulator"
@@ -236,8 +234,6 @@ COPY devices /root/devices
 #===================
 COPY src /root/src
 COPY supervisord.conf /root/
-## set java to another version because installation needed older dependency
-RUN update-alternatives --set java /usr/lib64/jvm/jre-17-openjdk/bin/java
 
 RUN chmod -R +x /root/src && chmod +x /root/supervisord.conf
 
