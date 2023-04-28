@@ -159,6 +159,8 @@ def appium_run(avd_name: str):
         except ValueError as v_err:
             logger.error(v_err)
     title = 'Appium Server'
+    ##give emulator some time to start up before telling hub ready for input
+    time.sleep (120)
     subprocess.check_call('xterm -T "{title}" -n "{title}" -e \"{cmd}\"'.format(title=title, cmd=cmd), shell=True)
 
 
