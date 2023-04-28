@@ -6,6 +6,7 @@ import os
 import re
 import subprocess
 import uuid
+import time
 
 from src import CHROME_DRIVER, CONFIG_FILE, ROOT
 from src import log
