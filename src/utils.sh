@@ -63,9 +63,9 @@ function enable_proxy_if_needed () {
         echo '
 until adb root
 do
- msleep 1
+ sleep 1
 done
-until adb shell 'content update --uri content://telephony/carriers --bind proxy:s:"${p[0]}" --bind port:s:"${p[1]}" --where "mcc=310" --where "mnc=260"'
+until adb shell content update --uri content://telephony/carriers --bind proxy:s:"${p[0]}" --bind port:s:"${p[1]}" --where "mcc=310" --where "mnc=260"
   do
   sleep 1 
   done
