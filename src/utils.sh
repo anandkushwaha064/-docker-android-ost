@@ -63,15 +63,19 @@ function enable_proxy_if_needed () {
         echo '
 until adb root
 do
- sleep 1
+  sleep 1
 done
 until adb shell content update --uri content://telephony/carriers --bind proxy:s:"${p[0]}" --bind port:s:"${p[1]}" --where "mcc=310" --where "mnc=260"
-  do
-  sleep 1 
-  done
- until adb unroot
 do
-	sleep 1
+  sleep 1 
+done
+until adb shell set global http_proxy cntlm:3128
+do
+  sleep 1
+done  
+until adb unroot
+do
+  sleep 1
 done'>/root/src/proxy.sh
         chmod a+x /root/src/proxy.sh
         
