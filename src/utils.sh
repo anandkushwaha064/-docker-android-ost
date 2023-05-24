@@ -69,7 +69,7 @@ until adb shell content update --uri content://telephony/carriers --bind proxy:s
 do
   sleep 1 
 done
-until adb shell set global http_proxy ${p[0]}:${p[1]}
+until adb shell settings put global http_proxy ${p[0]}:${p[1]}
 do
   sleep 1
 done  
