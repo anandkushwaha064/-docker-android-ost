@@ -53,4 +53,4 @@ function change_language_if_needed() {
   ##until adb reboot
   ##do
   ##  sleep 1
-  done
+  ##done
