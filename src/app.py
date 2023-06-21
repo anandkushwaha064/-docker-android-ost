@@ -115,11 +115,14 @@ def prepare_avd(device: str, avd_name: str, dp_size: str):
 
     skin_path = '/'.join([ANDROID_HOME, 'devices', 'skins', skin_name])
     config_path = '/'.join([avd_path, 'config.ini'])
+    
+    with open('/'.join([skin_path,'hardware.ini']),'r') as file:
+        hardware = file.read()
+
     with open(config_path, 'a') as file:
         file.write('skin.path={sp}'.format(sp=skin_path))
-        file.write('\ndisk.dataPartition.size={dp}'.format(dp=dp_size))
-
-    logger.info('Skin was added in config.ini')
+        file.write('\ndisk.dataPartition.size={dp}\n'.format(dp=dp_size))
+        file.write(hardware)
 
 
 def appium_run(avd_name: str):
