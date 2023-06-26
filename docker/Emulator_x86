@@ -3,6 +3,10 @@ FROM grichner/appium-ost:appium2
 
 LABEL maintainer "Budi Utomo <budtmo.os@gmail.com>"
 
+RUN if [ -z ${appium_start_delay+x} ]; then export appium_start_delay=0; else echo "var is set to '$appium_start_delay'"; fi
+ENV appium_start_delay=$appium_start_delay
+
+
 #=============
 # Set WORKDIR
 #=============
@@ -67,7 +71,7 @@ RUN zypper --no-gpg-checks ref  && \
     openbox \
     dejavu-fonts \
     feh \
-    python310-numpy \
+    python311-numpy \
     net-tools \
     ffmpeg \
     jq \
@@ -107,7 +111,7 @@ RUN zypper --no-gpg-checks dup -y
 # https://github.com/elgalu/docker-selenium/blob/236b861177bd2917d864e52291114b1f5e4540d7/Dockerfile#L412-L413
 #=======
 
-RUN zypper in -y python310-websockify \
+RUN zypper in -y python311-websockify \
     novnc && \
     zypper clean --all
 RUN ln -s /usr/share/novnc /root/noVNC && \

@@ -372,5 +372,6 @@ elif [ "$GENYMOTION" = true ]; then
 	esac
 else
 	echo "Using Emulator"
+	sleep $appium_start_delay
 	python3 -m src.app
 fi
