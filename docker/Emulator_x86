@@ -3,7 +3,7 @@ FROM grichner/appium-ost:appium2
 
 LABEL maintainer "Budi Utomo <budtmo.os@gmail.com>"
 
-RUN if [ -z ${appium_start_delay+x} ]; then export appium_start_delay=0; else echo "var is set to '$appium_start_delay'"; fi
+RUN if [ -z ${appium_start_delay+x} ]; then export appium_start_delay=0; else echo "appium_start_delay is set to '$appium_start_delay'"; fi
 ENV appium_start_delay=$appium_start_delay
 
 
