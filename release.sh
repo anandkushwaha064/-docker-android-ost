@@ -169,7 +169,7 @@ function push() {
     # Push docker image(s)
     for v in "${versions[@]}"; do
         image_version="$IMAGE-x86-$v:$RELEASE-appium2"
-        image_latest="$IMAGE-x86-$v:appium2"
+        image_latest="$IMAGE-x86-$v:latest"
         echo "[PUSH] Image name: $image_version and $image_latest"
         docker push $image_version
         docker push $image_latest
