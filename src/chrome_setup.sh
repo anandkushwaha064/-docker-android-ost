@@ -21,7 +21,7 @@ function change_language_if_needed() {
   do
     sleep 1
   done
-  until adb shell svc wifi disable
+  until adb shell svc wifi enable
   do 
     sleep 2
   done
