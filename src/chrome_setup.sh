@@ -54,3 +54,4 @@ function change_language_if_needed() {
   ##do
   ##  sleep 1
   ##done
+  until ! adb get-state; do sleep 1; done; kill 1
