@@ -1,7 +1,7 @@
 FROM grichner/appium-ost:latest
 ##v1.22.0-p0
 
-LABEL maintainer "Budi Utomo <budtmo.os@gmail.com>"
+LABEL maintainer="Budi Utomo <budtmo.os@gmail.com>, grichner at gmx dot net"
 
 RUN if [ -z ${appium_start_delay+x} ]; then export appium_start_delay=0; else echo "appium_start_delay is set to '$appium_start_delay'"; fi
 ENV appium_start_delay=$appium_start_delay
@@ -159,7 +159,7 @@ ENV ANDROID_VERSION=$ANDROID_VERSION \
     GA_API_VERSION="1" \
     APP_RELEASE_VERSION=$APP_RELEASE_VERSION \
     APP_TYPE=Emulator
-ENV PATH ${PATH}:${ANDROID_HOME}/platform-tools
+ENV PATH=${PATH}:${ANDROID_HOME}/platform-tools
 
 RUN yes | sdkmanager --licenses && \
     sdkmanager "platforms;android-${API_LEVEL}" "system-images;android-${API_LEVEL};${IMG_TYPE};${SYS_IMG}" "emulator"
@@ -246,4 +246,5 @@ HEALTHCHECK --interval=30s --timeout=30s --retries=3 \
 
 RUN ln -s /root/emulator/emulator /usr/bin/
 RUN mkdir -p /var/log/supervisor
+## Don't make supervisord stoppable... except you want anarchy :)
 CMD /usr/bin/supervisord --configuration supervisord.conf
