@@ -246,5 +246,5 @@ HEALTHCHECK --interval=30s --timeout=30s --retries=3 \
 
 RUN ln -s /root/emulator/emulator /usr/bin/
 RUN mkdir -p /var/log/supervisor
-## Don't make supervisord stoppable... except you want anarchy :)
+## stopping init process leads to restart container if restart: always is activated:)
 CMD /usr/bin/supervisord --configuration supervisord.conf
